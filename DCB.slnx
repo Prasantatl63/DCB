@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Framework.Core/Framework.Core.csproj" Id="7e6fe074-f474-4622-8d33-d5bfe36cd982" />
+  <Project Path="Framework.Pages/Framework.Pages.csproj" Id="dd73ff51-82c1-4280-b95f-9da9223eb7cb">
+    <BuildDependency Project="Framework.Core/Framework.Core.csproj" />
+  </Project>
+  <Project Path="Framework.Tests/Framework.Tests.csproj" Id="5466e2b8-be2c-4c19-8c6e-2e53fc1f5a5f" />
+  <Project Path="Framework.Utilities/Framework.Utilities.csproj" Id="8a86345f-6332-4dc6-848b-61aa5f8999a1" />
+</Solution>
