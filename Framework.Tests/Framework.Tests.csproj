@@ -6,7 +6,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
+	
+	
 
 	<ItemGroup>
 		<PackageReference Include="Allure.Net.Commons" Version="2.15.0" />
