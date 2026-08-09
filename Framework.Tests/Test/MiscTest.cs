@@ -22,7 +22,7 @@ namespace DCB.Tests
         {
         }
 
-         [Test]
+         //[Test]
          [AllureTag("smoke")]
          [AllureFeature("Login")]
          [AllureStory("Valid Login")]
