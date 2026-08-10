@@ -7,9 +7,7 @@ namespace DCB.Framework.Core
 {
 public class BrowserFactory
 {
-    public static async Task<IBrowser> CreateAndLaunchBrowser(
-        IPlaywright playwright,
-        string browserName,bool headless)
+    public static async Task<IBrowser> CreateAndLaunchBrowser(IPlaywright playwright,string browserName,bool headless)
     {
         return browserName.ToLower() switch
         {
