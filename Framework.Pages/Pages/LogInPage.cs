@@ -1,4 +1,5 @@
 using Microsoft.Playwright;
+//using Serilog;
 
 namespace DCB.Pages
 {
@@ -14,11 +15,15 @@ namespace DCB.Pages
 
         private ILocator Password => _page.Locator("#password");
 
-        private ILocator LoginButton => _page.Locator("#login");
+        private ILocator LoginButton => _page.Locator("#submit");
 
-        public async Task EnterLogIn(string user)
+
+        public async Task LogInAsync(string user,string password)
         {
             await UserName.FillAsync(user);
+         //   Log.Debug("Username entered");
+            await Password.FillAsync(password);
+            await LoginButton.ClickAsync();
         }
         public async Task EnterPassword(string password)
         {

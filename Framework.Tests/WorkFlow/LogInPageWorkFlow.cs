@@ -1,5 +1,6 @@
-using Microsoft.Playwright;
 using DCB.Pages;
+using Microsoft.Playwright;
+using Serilog;
 
 namespace DCB.Framework.Workflow
 {
@@ -15,9 +16,10 @@ namespace DCB.Framework.Workflow
 
         public async Task Login(string user, string pass)
         {
-            await loginPage.EnterLogIn(user);
-            await loginPage.EnterPassword(user);
-            await loginPage.SubmitLogIn();
+            Log.Information("Starting login for user: {Username}", user);
+            await loginPage.LogInAsync(user, pass);
+            Log.Information("Login Done : {Username}", user);
+
         }
     }
 }

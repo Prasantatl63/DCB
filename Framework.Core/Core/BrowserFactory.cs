@@ -9,26 +9,17 @@ public class BrowserFactory
 {
     public static async Task<IBrowser> CreateAndLaunchBrowser(IPlaywright playwright,string browserName,bool headless)
     {
-        return browserName.ToLower() switch
+            var options = new BrowserTypeLaunchOptions
+            {
+                Headless = headless
+            };
+
+            return browserName.ToLower() switch
         {
-            "firefox" =>
-                await playwright.Firefox.LaunchAsync(
-                    new BrowserTypeLaunchOptions
-                    {
-                        Headless = ConfigReader.Headless
-                    }),
-
-            "webkit" =>
-                await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions
-                {
-                    Headless = ConfigReader.Headless
-                }),
-
-            _ =>
-                await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-                {
-                    Headless = ConfigReader.Headless
-                }),
+            "chromium" => await playwright.Chromium.LaunchAsync(options),
+            "firefox" => await playwright.Firefox.LaunchAsync(options),
+            "webkit" => await playwright.Webkit.LaunchAsync(options),
+           
         };
     }
 }
