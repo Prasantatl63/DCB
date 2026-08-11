@@ -4,12 +4,14 @@ using DCB.Framework.Utilities;
 using Allure.Net.Commons;
 using NUnit.Framework.Interfaces;
 using Allure.NUnit;
+using Serilog.Context;
 
 namespace DCB.Framework.Core
 {
     [Parallelizable(ParallelScope.All)]
     public abstract class BaseTest
     {
+        private IDisposable? _logContext;
         // Shared at fixture/assembly level
         protected static IPlaywright Playwright { get; private set; } = null!;
         protected static IBrowser Browser { get; private set; } = null!;
@@ -46,6 +48,9 @@ namespace DCB.Framework.Core
         [SetUp]
         public async Task SetUp()
         {
+            var testName = TestContext.CurrentContext.Test.Name; 
+            _logContext = LogContext.PushProperty("TestName", testName);
+
             // Create unique artifact folder for this test
             CreateArtifactDirectory();
 

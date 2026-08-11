@@ -1,5 +1,5 @@
 using Microsoft.Playwright;
-//using Serilog;
+using Serilog;
 
 namespace DCB.Pages
 {
@@ -21,7 +21,7 @@ namespace DCB.Pages
         public async Task LogInAsync(string user,string password)
         {
             await UserName.FillAsync(user);
-         //   Log.Debug("Username entered");
+            Log.Debug("Username entered");
             await Password.FillAsync(password);
             await LoginButton.ClickAsync();
         }

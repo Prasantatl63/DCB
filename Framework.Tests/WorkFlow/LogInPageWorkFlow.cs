@@ -1,4 +1,5 @@
 using DCB.Pages;
+using Framework.Utilities.Logging;
 using Microsoft.Playwright;
 using Serilog;
 
@@ -16,9 +17,9 @@ namespace DCB.Framework.Workflow
 
         public async Task Login(string user, string pass)
         {
-            Log.Information("Starting login for user: {Username}", user);
+            TestLogger.Info("Login started for {Username}", user);
             await loginPage.LogInAsync(user, pass);
-            Log.Information("Login Done : {Username}", user);
+            TestLogger.Info("Login Done : {Username}", user);
 
         }
     }
