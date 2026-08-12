@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DCB.Tests": {
+      "environmentVariables": {
+        "ENVIRONMENT": "QA",
+        "BROWSER": "chromium",
+        "HEADLESS": "false"
+      }
+    }
+  }
+}

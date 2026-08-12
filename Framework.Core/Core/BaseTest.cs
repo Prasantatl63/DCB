@@ -30,6 +30,8 @@ namespace DCB.Framework.Core
         [OneTimeSetUp]
         public async Task OneTimeSetUp()
         {
+            var environment = ConfigReader.Environment;
+
             Playwright =
                 await Microsoft.Playwright.Playwright.CreateAsync();
 
