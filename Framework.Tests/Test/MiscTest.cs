@@ -1,14 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Microsoft.Playwright;
-
-using NUnit.Framework;
+﻿using Microsoft.Playwright;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using Allure.Net.Commons;
-
-using NUnit.Framework;
-
+using DCB.Framework.Core;
 
 namespace DCB.Tests
 {
@@ -21,7 +15,6 @@ namespace DCB.Tests
         public void Setup()
         {
         }
-      
 
          //[Test]
          [AllureTag("smoke")]

@@ -3,7 +3,6 @@ using NUnit.Framework;
 using DCB.Framework.Utilities;
 using Allure.Net.Commons;
 using NUnit.Framework.Interfaces;
-using Allure.NUnit;
 using Serilog.Context;
 
 namespace DCB.Framework.Core

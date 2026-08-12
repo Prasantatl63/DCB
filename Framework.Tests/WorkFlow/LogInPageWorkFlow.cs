@@ -1,7 +1,6 @@
 using DCB.Pages;
 using Framework.Utilities.Logging;
 using Microsoft.Playwright;
-using Serilog;
 
 namespace DCB.Framework.Workflow
 {

@@ -11,9 +11,9 @@ namespace DCB.Pages
         {
             _page = page;
         }
-        private ILocator UserName => _page.Locator("#username");
+        private ILocator UserName => _page.Locator("#username1");
 
-        private ILocator Password => _page.Locator("#password");
+        private ILocator Password => _page.Locator("#password1");
 
         private ILocator LoginButton => _page.Locator("#submit");
 

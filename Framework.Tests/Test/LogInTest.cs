@@ -1,23 +1,11 @@
 using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
-using Microsoft.Playwright;
-using NUnit.Framework;
-//using PlayWrightHelloWorld.Utilities;
-using Microsoft.Playwright;
 using DCB.Framework.Utilities;
-
-using Microsoft.Playwright.NUnit;
-using NUnit.Framework;
 using DCB.Framework.Core;
 using DCB.Framework.Workflow;
-using System.ComponentModel;
-
-
 
 namespace DCB.Tests
-
-
 {
     [TestFixture]
     [AllureNUnit]
@@ -38,11 +26,6 @@ namespace DCB.Tests
             await new LogInPageWorkFlow(Page).Login(ConfigReader.UserName, ConfigReader.Password);
             Assert.That(Page.Url, 
                 Does.Contain("logged-in-successfully"));
-
-            
-
         }
-
-        
     }
 }

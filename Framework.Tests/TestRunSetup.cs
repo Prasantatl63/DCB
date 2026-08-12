@@ -1,8 +1,7 @@
 ﻿
 using Framework.Utilities.Logging;
-using NUnit.Framework;
 
-namespace Framework.Tests
+namespace DCB.Tests
 {
     [SetUpFixture]
     public class TestRunSetup
