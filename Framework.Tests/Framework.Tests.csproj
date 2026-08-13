@@ -68,10 +68,24 @@
 		<None Update="appsettings.QA.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+
+		<None Update="Test.runsettings">
+		  <Generator>SettingsSingleFileGenerator</Generator>
+		  <LastGenOutput>Test.Designer.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Properties\" />
 	  <Folder Include="TestData\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Test.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Test.runsettings</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

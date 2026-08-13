@@ -9,13 +9,13 @@ namespace DCB.Tests
         [OneTimeSetUp]
         public void GlobalSetup()
         {
-            LoggerManager.Initialize();
+            LoggerManager2.Initialize();
         }
 
         [OneTimeTearDown]
         public void GlobalTeardown()
         {
-            LoggerManager.Close();
+            LoggerManager2.Close();
         }
     }
 }

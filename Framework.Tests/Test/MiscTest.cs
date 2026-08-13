@@ -2,7 +2,7 @@
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using Allure.Net.Commons;
-using DCB.Framework.Core;
+//using DCB.Framework.Core;
 
 namespace DCB.Tests
 {

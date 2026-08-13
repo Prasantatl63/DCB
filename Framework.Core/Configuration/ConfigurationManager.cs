@@ -18,7 +18,7 @@ public static class ConfigurationManager
     private static IConfigurationRoot BuildConfiguration()
     {
         var environment =
-            Environment.GetEnvironmentVariable("TEST_ENVIRONMENT")
+            Environment.GetEnvironmentVariable("ENVIRONMENT")
             ?? "QA";
 
         return new ConfigurationBuilder()

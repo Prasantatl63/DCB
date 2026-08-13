@@ -20,9 +20,9 @@ namespace DCB.Framework.Workflow
             var settings =
            ConfigurationManager.Settings;
 
-            TestLogger.Info("Login started for {Username}", user);
+            TestLogger2.Info("Login started for {Username}", user);
             await loginPage.LogInAsync(user, password);
-            TestLogger.Info("Login Done : {Username}", user);
+            TestLogger2.Info("Login Done : {Username}", user);
 
         }
     }
