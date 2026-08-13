@@ -1,6 +1,7 @@
 using DCB.Pages;
 using Framework.Utilities.Logging;
 using Microsoft.Playwright;
+using DCB.Framework.Configuration;
 
 namespace DCB.Framework.Workflow
 {
@@ -14,10 +15,13 @@ namespace DCB.Framework.Workflow
             loginPage = new LoginPage(_page);
         }
 
-        public async Task Login(string user, string pass)
+        public async Task Login(string user, string password)
         {
+            var settings =
+           ConfigurationManager.Settings;
+
             TestLogger.Info("Login started for {Username}", user);
-            await loginPage.LogInAsync(user, pass);
+            await loginPage.LogInAsync(user, password);
             TestLogger.Info("Login Done : {Username}", user);
 
         }
