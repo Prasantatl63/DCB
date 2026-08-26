@@ -1,7 +1,8 @@
 using DCB.Pages;
-using Framework.Utilities.Logging;
+//using Framework.Utilities.Logging;
 using Microsoft.Playwright;
 using DCB.Framework.Configuration;
+using DCB.Framework.Logging;
 
 namespace DCB.Framework.Workflow
 {
@@ -20,9 +21,9 @@ namespace DCB.Framework.Workflow
             var settings =
            ConfigurationManager.Settings;
 
-            TestLogger2.Info("Login started for {Username}", user);
+            TestLogger.Info("Login started for {Username}", user);
             await loginPage.LogInAsync(user, password);
-            TestLogger2.Info("Login Done : {Username}", user);
+            TestLogger.Info("Login Done : {Username}", user);
 
         }
     }

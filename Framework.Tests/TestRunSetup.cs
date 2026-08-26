@@ -1,5 +1,5 @@
 ﻿
-using Framework.Utilities.Logging;
+//using Framework.Utilities.Logging;
 
 namespace DCB.Tests
 {
@@ -9,13 +9,13 @@ namespace DCB.Tests
         [OneTimeSetUp]
         public void GlobalSetup()
         {
-            LoggerManager2.Initialize();
+            //LoggerManager2.Initialize();
         }
 
         [OneTimeTearDown]
         public void GlobalTeardown()
         {
-            LoggerManager2.Close();
+           // LoggerManager2.Close();
         }
     }
 }
