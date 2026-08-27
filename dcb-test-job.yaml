@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dcb-playwright
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: dcb-playwright
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: dcb-test
+          image: dcb:1.0
+          imagePullPolicy: IfNotPresent

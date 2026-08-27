@@ -15,7 +15,6 @@ namespace DCB.Tests
         public void Setup()
         {
         }
-
          //[Test]
          [AllureTag("smoke")]
          [AllureFeature("Login")]
@@ -31,7 +30,7 @@ namespace DCB.Tests
             
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false // set false if you want to see the browser
+                Headless = true // set false if you want to see the browser
             });
 
         var contexta = browser.NewContextAsync();
@@ -77,7 +76,7 @@ namespace DCB.Tests
             // Launch a browser (Chromium)
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false // set false if you want to see the browser
+                Headless = true // set false if you want to see the browser
             });
       
             // Create a new page
@@ -93,8 +92,10 @@ namespace DCB.Tests
 
         }
   
-          [Test]
-         [AllureTag("smoke")]
+         [Test]
+
+        [Category("Shard1")]
+        [AllureTag("smoke")]
          [AllureSeverity(SeverityLevel.critical)]
         public async Task LocatorAriaRole1()
         {
@@ -104,7 +105,7 @@ namespace DCB.Tests
             // Launch a browser (Chromium)
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false ,
+                Headless = true ,
                 // set false if you want to see the browser
             });
             
@@ -141,7 +142,7 @@ namespace DCB.Tests
             // Launch a browser (Chromium)
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false ,
+                Headless = true ,
             });
 
             var context = await browser.NewContextAsync();
@@ -164,7 +165,8 @@ namespace DCB.Tests
         }
 
           [Test]
-            [AllureTag("smoke")]
+        [Category("Shard2")]
+        [AllureTag("smoke")]
            // [AllureSeverity(SeverityLevel.critical)]
             [AllureOwner("QA Team")]
            public async Task LocatorAriaRole()
@@ -174,7 +176,7 @@ namespace DCB.Tests
                 // Launch a browser (Chromium)
                 await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
                  {
-                       Headless = false ,
+                       Headless = true ,
                 });
 
                 var context = await browser.NewContextAsync();
@@ -224,7 +226,8 @@ namespace DCB.Tests
         }
 
             [Test]
-            [AllureTag("smoke")]
+        [Category("Shard3")]
+        [AllureTag("smoke")]
           //  [AllureSeverity(SeverityLevel.critical)]
             [AllureOwner("QA Team")]
            public async Task Controls()
@@ -233,7 +236,7 @@ namespace DCB.Tests
             using var playwright = await Playwright.CreateAsync();
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false , 
+                Headless = true , 
             });
 
            // var context = await browser.NewContextAsync();

@@ -3,7 +3,7 @@
 	<RunConfiguration>
 		<EnvironmentVariables>
 			<ENVIRONMENT>QA</ENVIRONMENT>
-			<HEADLESS>false</HEADLESS>
+			<HEADLESS>true</HEADLESS>
 		</EnvironmentVariables>
 	</RunConfiguration>
 </RunSettings>

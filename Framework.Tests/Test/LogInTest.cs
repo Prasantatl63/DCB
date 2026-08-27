@@ -22,6 +22,7 @@ namespace DCB.Tests
         }
 
         [Test]
+        [Category("Shard1")]
         [AllureTag("smoke")]
         [AllureFeature("Login")]
         [AllureTag("smoke")]
