@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: dcb-test
-          image: dcb:1.0
+          image: dcb:2.0
           imagePullPolicy: IfNotPresent
 
           env:
