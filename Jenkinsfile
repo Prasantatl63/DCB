@@ -4,7 +4,7 @@ pipeline {
     environment {
         KUBECONFIG = '/var/jenkins_home/.kube/config'
         JOB_NAME_K8S = 'dcb-playwright'
-        TEST_IMAGE = 'dcb:1.0'
+        TEST_IMAGE = 'dcb:2.0'
     }
 
     stages {
