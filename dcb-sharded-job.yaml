@@ -22,7 +22,7 @@ spec:
       containers:
         - name: dcb-test
           image: dcb:2.0
-          imagePullPolicy: never
+          imagePullPolicy: Never
 
           env:
             - name: POD_NAME
