@@ -1,7 +1,10 @@
+
 apiVersion: batch/v1
 kind: Job
+
 metadata:
   name: dcb-playwright
+
 spec:
   completions: 3
   parallelism: 3
@@ -38,24 +41,40 @@ spec:
 
           args:
             - |
+              set -e
+
               echo "=================================="
               echo "Pod: $POD_NAME"
               echo "Shard Index: $JOB_COMPLETION_INDEX"
               echo "=================================="
 
               if [ "$JOB_COMPLETION_INDEX" = "0" ]; then
+
                 echo "Running SHARD 1"
-                dotnet test /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll --no-build --filter "TestCategory=Shard1"
+
+                dotnet test \
+                  /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll \
+                  --filter "Category=Shard1"
 
               elif [ "$JOB_COMPLETION_INDEX" = "1" ]; then
+
                 echo "Running SHARD 2"
-                dotnet test /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll --no-build --filter "TestCategory=Shard2"
+
+                dotnet test \
+                  /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll \
+                  --filter "Category=Shard2"
 
               elif [ "$JOB_COMPLETION_INDEX" = "2" ]; then
+
                 echo "Running SHARD 3"
-                dotnet test /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll --no-build --filter "TestCategory=Shard3"
+
+                dotnet test \
+                  /app/Framework.Tests/bin/Debug/net10.0/Framework.Tests.dll \
+                  --filter "Category=Shard3"
 
               else
+
                 echo "Unknown shard index: $JOB_COMPLETION_INDEX"
                 exit 1
+
               fi
