@@ -3,14 +3,21 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using Allure.Net.Commons;
 //using DCB.Framework.Core;
+using NUnit.Framework;
 
 namespace DCB.Tests
 {
    [TestFixture]
-    [AllureNUnit]
+   [AllureNUnit]
    
     public class MiscTest
     {
+        IPlaywright playwright1;
+        IBrowser browser1;
+        IBrowserContext context1;
+        IPage page1;
+
+
         [SetUp]
         public void Setup()
         {
@@ -21,7 +28,7 @@ namespace DCB.Tests
          [AllureStory("Valid Login")]
          [AllureAfter]
          [AllureSeverity(SeverityLevel.critical)]
-        public async Task StartPlayWright()
+       public async Task StartPlayWright()
         {
             // Initialize Playwright
             using var playwright = await Playwright.CreateAsync();
@@ -92,11 +99,10 @@ namespace DCB.Tests
 
         }
   
-         [Test]
-
+        [Test]
         [Category("Shard1")]
         [AllureTag("smoke")]
-         [AllureSeverity(SeverityLevel.critical)]
+        [AllureSeverity(SeverityLevel.critical)]
         public async Task LocatorAriaRole1()
         {
             // Initialize Playwright
@@ -132,9 +138,9 @@ namespace DCB.Tests
         }
 
           [Test]
-            [AllureTag("smoke")]
-            [AllureSeverity(SeverityLevel.critical)]
-           public async Task LocatorAriaRole2()
+          [AllureTag("smoke")]
+          [AllureSeverity(SeverityLevel.critical)]
+          public async Task LocatorAriaRole2()
         {
             // Initialize Playwright
             using var playwright = await Playwright.CreateAsync();
@@ -164,11 +170,11 @@ namespace DCB.Tests
 
         }
 
-          [Test]
+        [Test]
         [Category("Shard2")]
         [AllureTag("smoke")]
-           // [AllureSeverity(SeverityLevel.critical)]
-            [AllureOwner("QA Team")]
+        // [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("QA Team")]
            public async Task LocatorAriaRole()
         {
                 using var playwright = await Playwright.CreateAsync();
@@ -225,10 +231,10 @@ namespace DCB.Tests
 
         }
 
-            [Test]
+        [Test]
         [Category("Shard3")]
         [AllureTag("smoke")]
-          //  [AllureSeverity(SeverityLevel.critical)]
+       //[AllureSeverity(SeverityLevel.critical)]
             [AllureOwner("QA Team")]
            public async Task Controls()
         {
@@ -239,7 +245,7 @@ namespace DCB.Tests
                 Headless = true , 
             });
 
-           // var context = await browser.NewContextAsync();
+            var context = await browser.NewContextAsync();
             // Create a new page
             var page = await browser.NewPageAsync();
 
@@ -279,8 +285,192 @@ namespace DCB.Tests
             //      ContentFrameAsync() Gets the frame object
 
         }
+        [Test]
+        public async Task NewTest()
+        {
+            try
+            {
+                var playwright = await Playwright.CreateAsync();
+
+                var browser = await playwright.Chromium.LaunchAsync(
+                 new BrowserTypeLaunchOptions { 
+                 Headless =false}
+                    );
+                var page2 = await browser.NewPageAsync();
+                var context = await browser.NewContextAsync();
+                var page = await context.NewPageAsync();
+                await page.GotoAsync("https://the-internet.herokuapp.com/");
 
 
+
+                await page.GetByText("Add/Remove Elements").ClickAsync();
+
+                await page.GetByRole(AriaRole.Button, new() { Name = "Add Element" }).ClickAsync();
+
+                await page.GetByRole(AriaRole.Button, new() { Name = "Delete" }).ClickAsync();
+
+                await page.GoBackAsync();
+                //await page.Locator("a[href ='/basic_auth']").First.ClickAsync();
+                await page.Locator("a[href ='/basic_auth']").ClickAsync();
+
+                var context1 = await browser.NewContextAsync(
+                 new BrowserNewContextOptions
+                 {
+                     HttpCredentials = new HttpCredentials
+                     {
+                         Username = "admin",
+                         Password = "admin"
+                     }
+                 });
+
+                var page1 = await context.NewPageAsync();
+
+                await page.GotoAsync("https://the-internet.herokuapp.com/basic_auth");
+
+                Console.WriteLine(await page1.TitleAsync());
+
+
+                //Practice 
+                await page2.Locator("#country").SelectOptionAsync("india");
+                await page2.Locator("#country").SelectTextAsync();
+
+
+                await context.StorageStateAsync(
+                new BrowserContextStorageStateOptions
+                {
+                    Path = "auth.json"
+                });
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        [Test]
+        public async Task PracticeStorage()
+        {
+            //Set Up 
+
+            var playwright = await Playwright.CreateAsync();
+
+            var browser = await playwright.Chromium.LaunchAsync(
+             new BrowserTypeLaunchOptions
+             {
+                 Headless = false
+             }
+                );
+            var context = await browser.NewContextAsync();
+            var page = await context.NewPageAsync();
+            await page.GotoAsync("https://practicetestautomation.com/practice-test-login/");
+
+            await page.GetByLabel("Username").FillAsync("student");
+            await page.GetByLabel("Password").FillAsync("Password123");
+            await page.GetByRole(AriaRole.Button, new() { Name = "Submit" }).ClickAsync();
+
+
+
+            // Get the storage state
+            var storageState = await context.StorageStateAsync();
+
+
+
+            var context2 = await browser.NewContextAsync(
+            new BrowserNewContextOptions
+            {
+                StorageState = storageState
+            });
+
+            var page2 = await context2.NewPageAsync();
+            await page2.GotoAsync("https://practicetestautomation.com/practice-test-login/");
+
+        }
+
+        public async Task SetUp()
+        {
+            playwright1 = await Playwright.CreateAsync();
+            browser1 = await playwright1.Chromium.LaunchAsync(
+                new BrowserTypeLaunchOptions { Headless = false }
+                );
+
+            context1 = await browser1.NewContextAsync();
+            page1 = await context1.NewPageAsync();
+        }
+
+        [Test]
+        public async Task TabTest()
+        {
+            await SetUp();
+            await page1.GotoAsync("https://the-internet.herokuapp.com/");
+            var page2 = await context1.NewPageAsync();
+            var page3 = await context1.NewPageAsync();
+            var page4 = await context1.NewPageAsync();
+            await page2.GotoAsync("https://the-internet.herokuapp.com/challenging_dom");
+            await page1.BringToFrontAsync();
+            await page3.GotoAsync("https://the-internet.herokuapp.com/checkboxes");
+            await page4.GotoAsync("https://the-internet.herokuapp.com/challenging_dom");
+            
+            await context1.Pages.First(p => p.Url.Contains("checkboxes")).BringToFrontAsync();
+        }
+
+        [Test]
+        public async Task ContextMenu()
+        {
+            await SetUp();
+            await page1.GotoAsync("https://the-internet.herokuapp.com/dropdown");
+            
+            //context menu
+            //await page1.Locator("div[id='hot-spot']").ClickAsync(new() { Button = MouseButton.Right });
+            //await Task.Delay(10000);
+
+            //await page1.Locator("#dropdown").SelectOptionAsync("1");
+            await page1.Locator("#dropdown").SelectOptionAsync(new SelectOptionValue
+            {
+                Label = "Option 1"
+            });
+
+            await page1.Locator("#dropdown").SelectOptionAsync("2");
+            await Assertions.Expect(page1.GetByText("Login successful")).ToBeVisibleAsync();
+
+
+            await page1.GetByRole(AriaRole.Button, new() { Name = "Submit" }).ClickAsync();
+            await context1.Tracing.StartAsync(new()
+            { 
+            Screenshots = true,
+            Snapshots = true,
+            Sources = true 
+            }
+                  
+                );
+
+        }
+
+        [Test]
+        public async Task InitialSetUp()
+        {
+            await SetUp();
+
+            await page1.GotoAsync("https://the-internet.herokuapp.com/javascript_alerts");
+            await Task.Delay(10000);
+            page1.Dialog += async (_, dialog) =>
+            {
+                ////Console.WriteLine("Dialog Type: " + dialog.Type);
+                //Console.WriteLine("Dialog Message: " + dialog.Message);
+                //await Task.Delay(10000);
+                await dialog.AcceptAsync();
+            };
+
+            await page1.GetByRole(
+                AriaRole.Button,
+                new() { Name = "Click for JS Alert" }
+            ).ClickAsync();
+            
+
+        }
 
 
     }

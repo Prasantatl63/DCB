@@ -13,7 +13,6 @@ public class ArtifactManager
             AppContext.BaseDirectory,
             "TestArtifacts");
     }
-
     public string CreateTestDirectory()
     {
         var testName =

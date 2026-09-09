@@ -89,6 +89,7 @@ public abstract class BaseTest
 
         if (Context != null)
             await Context.CloseAsync();
+        await Page.DisposeAsync();
     }
 
     [OneTimeTearDown]
